@@ -1,0 +1,49 @@
+
+hello niti^
+hello ^hello niti
+hello niti
+hello niti
+hello niti
+fuck niti hello kevin
+a
+b
+c
+d
+1
+2
+3
+
+the The other
+nniti
+fuck
+foof
+radar
+barab
+
+ANCHORS(specifies position of a pattern)
+^ -> beginning of a line
+$ -> end of line
+
+CHARSETS (match 1 or more chars in a single position )
+[a-z]
+[aeiou]
+[0-9 A-Z a-z _]
+a
+. -> any character (exact 1)
+
+
+MODIFIERS (repeat previous characters)
+
+* -> maximize the preceeding pattern (0-many matches)
+eg: n*  -> will match 0 or more occurances of n (Hence matches everything)
+so  nn* or n\+ -> will math 1 or more occurances of n 
+and n\?  -> will match 0 or 1 occurances of n
+
+\(\) \1 -> for remebering and backreferencing
+eg: foof -> \\([a-b]\)\([a-b]\)\2\1
+
+\{\} patern repeat
+eg: /[a-z]\{2,5\} searches for 2,3,4 or 5 letter small case words
+
+\<\> exact word matching
+eg: the The other -> \<the\>

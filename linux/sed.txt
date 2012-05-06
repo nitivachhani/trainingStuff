@@ -1,0 +1,235 @@
+               %%%%% SED %%%%%
+
+--------------   s command --------------------------
+
+echo -e 'day day \n day' | sed 's/day/night/'
+--> night day 
+ night
+
+echo -e 'day day \n day' | sed 's/day/night/g'
+--> night night 
+ night
+
+There are four parts to this substitute command:
+
+s	  Substitute command
+/../../	  Delimiter
+day	  Regular Expression Pattern Search Pattern
+night	  Replacement string
+
+-> CAN USE | or : instead of / as DELIMITERS
+   dribbleparty-lm:git_tut patelkev$ echo '/usr/local/bin' | sed 's/\/usr\/local/\/common/'
+   /common/bin
+   dribbleparty-lm:git_tut patelkev$ echo '/usr/local/bin'| sed 's|/usr/local|/common|'
+   /common/bin
+   dribbleparty-lm:git_tut patelkev$ echo '/usr/local/bin'| sed 's:/usr/local:/common:'
+   /common/bin
+
+
+-> USING & as a matched string
+   dribbleparty-lm:git_tut patelkev$ echo '123 hello' | sed 's:[0-9][0-9]*:& & &:'
+   123 123 123 hello
+
+-> USING \1 or \n for pattern matching
+   dribbleparty-lm:git_tut patelkev$ echo '123 123 hello hello niti' | sed 's:\([0-9a-zA-Z][0-9a-zA-Z]*\) \1:\1:g'
+   123 hello niti
+
+----------------- e option command ----------------
+-> MULTIPLE COMMANDS  with -e
+   dribbleparty-lm:git_tut patelkev$ echo 'welcome niti' | sed -e 's/welcome/bye/' -e 's/niti/kevin/'
+   bye kevin
+
+
+
+------------------- d command -----------------
+-> use sed '<n>d' to delete  nth line 
+   dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=5;i++)); do echo this is line $i; done | sed '1d'
+   this is line 2
+   this is line 3
+   this is line 4
+   this is line 5
+   NOTE : use sed '$d' to delete last line
+
+
+-> u can specify range of lines to be deleted using sed '<m>,<n>d'
+   dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=5;i++)); do echo this is line $i; done | sed '2,4d'
+   this is line 1
+   this is line 5
+
+-> delete line with pattern matching using sed '/<pattern>/d'
+   dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=5;i++)); do echo this is line $i; done | sed '/line 1/d'
+   this is line 2
+   this is line 3
+   this is line 4
+   this is line 5
+
+-> delete selected lines matching the pattern using sed '/<pattern>/{<m>,<n>d;}' 
+   dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=5;i++)); do echo this is line $i; done | sed '/line/{3,4d;}'
+   this is line 1
+   this is line 2
+   this is line 5
+
+
+-------------------- r option command ------------------
+-> sed -r is for extended regex usage (need not use \ in many of the commands)
+
+eg: dribbleparty-lm:git_tut patelkev$ echo '123 123 hello hello' | sed -r 's:([0-9a-z]+) \1:\1:g'
+    123 hello
+
+
+------------------
+
+
+            %%%%%%%%% JST FYI %%%%%%%%%%%%
+
+   dribbleparty-lm:git_tut patelkev$ for ((i=0;i<5;i++)); do echo this is line $i; done
+
+-------------------- p flag command ---------------
+prints the changed line
+ eg :- dribbleparty-lm:git_tut patelkev$ echo -e 'hello \nniti Vachhani \nkevin' | sed  's/niti/bye/p'
+        hello 
+        bye Vachhani 
+        bye Vachhani 
+        kevin
+
+
+-------------------- n option command ---------------
+supress the normal output (with p the changed line can be printed)
+eg: dribbleparty-lm:git_tut patelkev$ echo -e 'hello \nniti Vachhani \nkevin' | sed -n 's/niti/bye/p'
+    bye Vachhani 
+    dribbleparty-lm:git_tut patelkev$ echo -e 'hello \nniti Vachhani \nkevin' | sed -n 's/niti/bye/'
+    <no OUTPUT>
+
+
+-------------------- q command ---------------
+quits execution after a given line
+eg: dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  -e 's/line/line number/' -e '10 q' 
+this is line number 1
+this is line number 2
+this is line number 3
+this is line number 4
+this is line number 5
+this is line number 6
+this is line number 7
+this is line number 8
+this is line number 9
+this is line number 10
+
+-------------------- a command ---------------
+appends  a line after a match
+
+eg: dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/ a\ 
+> hello world
+> 
+dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/ a\ 
+hello world'
+this is line 1
+hello worldthis is line 2
+this is line 3
+this is line 4
+this is line 5
+this is line 6
+this is line 7
+this is line 8
+this is line 9
+this is line 10
+hello worldthis is line 11
+hello worldthis is line 12
+hello worldthis is line 13
+hello worldthis is line 14
+hello worldthis is line 15
+hello worlddribbleparty-lm:git_tut patelkev$ 
+
+-------------------- i command ---------------
+inserts the line before a match
+
+dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/ i\
+hello world'
+hello worldthis is line 1
+this is line 2
+this is line 3
+this is line 4
+this is line 5
+this is line 6
+this is line 7
+this is line 8
+this is line 9
+hello worldthis is line 10
+hello worldthis is line 11
+hello worldthis is line 12
+hello worldthis is line 13
+hello worldthis is line 14
+hello worldthis is line 15
+
+-------------------- c command ---------------
+replace the matching line
+
+dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/ c\
+hello world'
+hello worldthis is line 2
+this is line 3
+this is line 4
+this is line 5
+this is line 6
+this is line 7
+this is line 8
+this is line 9
+hello worldhello worldhello worldhello worldhello worldhello
+
+-------------------- w command ---------------
+-> USING <w filename> to write to a file
+   dribbleparty-lm:git_tut patelkev$ echo '123 123 hello hello niti' | sed 's:\([0-9a-zA-Z][0-9a-zA-Z]*\) \1:\1:gw test.txt'
+   123 hello niti
+   dribbleparty-lm:git_tut patelkev$ cat test.txt 
+   123 hello niti
+   NOTE : make sure that w is the last flag.
+
+
+-------------------- = command ---------------
+-> displays the pattern matching line number
+
+eg: dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/ ='
+1
+this is line 1
+this is line 2
+this is line 3
+this is line 4
+this is line 5
+this is line 6
+this is line 7
+this is line 8
+this is line 9
+10
+this is line 10
+11
+this is line 11
+12
+this is line 12
+13
+this is line 13
+14
+this is line 14
+15
+this is line 15
+
+-------------------- ! command ---------------
+-> displays/delete all non-matching
+
+eg: dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed -n '/line 1/!p'
+this is line 2
+this is line 3
+this is line 4
+this is line 5
+this is line 6
+this is line 7
+this is line 8
+this is line 9
+
+dribbleparty-lm:git_tut patelkev$ for ((i=1;i<=15;i++)); do echo this is line $i; done | sed  '/line 1/!d'
+this is line 1
+this is line 10
+this is line 11
+this is line 12
+this is line 13
+this is line 14
+this is line 15
