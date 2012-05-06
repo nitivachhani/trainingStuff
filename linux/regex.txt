@@ -4,7 +4,7 @@ hello ^hello niti
 hello niti
 hello niti
 hello niti
-fuck niti hello kevin
+niti hello kevin
 a
 b
 c
@@ -15,7 +15,7 @@ d
 
 the The other
 nniti
-fuck
+
 foof
 radar
 barab
