@@ -1,0 +1,28 @@
+1. write a shell script that accepts one or more filenames as arguments and converts all of them to uppercase, provided they exist in the current directory.
+2. write a shell script that counts the no. of directories under the current directory.
+3. write a shell script that accepts a filename as argument and displays its creation time if it exists and if it does not exist, an appropriate message.
+4. write a shell script to find the smallest of 3 no.s that are read from the keyboard.
+5. write a shell script to display the processes in the system every 30 secs for 5 times.
+6. write a shell script using the expr command to read-in a string and display a suitable message if it does not have atleast 10 chars.
+7. write a shell script to compute the sum of nos. passed to it as arguments on the command-line and displays the result.
+8. write a shell script that accepts any no. of arguments and prints them in reverse order.
+9. write a shell script to determine the period for which a specified user is working on the system.
+10. write a shell script to report the logging in of a specified user within one minute after he/she logs in. it should terminate automatically after a certain period of time.
+11. write a shell script that accepts a list of filenames as its arguments, counts and reports the occurrence of each word that is present in the first argument file on other argument files.
+12. write a shell script to report in descending order of their size, names and sizes of all files whose size exceed 40 bytes, in a specific directory( supplied as argument). Total of searched files should also be displayed.
+13. write a shell script that displays a list of all files in the current directory  to which the user has read, write and execute permission.
+14. write a shell script that accepts values from 1 to 6 and displays for choice 
+    1. list of files in current directory 
+    2. current date
+    3. process status
+    4. current users
+    5. present working directory
+    6. exit
+    others. Invalid option
+15. write a shell script to print a message for a required no. of times
+16. write a shell script to calculate area of triangle
+17. write a shell script to accept 2 integer as arguments and compute the value of first raised to the power of second.
+18. write a shell script that deletes all lines containing a specified word in one or more files supplied as arguments to it.
+19. write a shell script to generate Fibonacci series
+20. write a shell script to generate factorial of no. read from user.
+
