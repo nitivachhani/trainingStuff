@@ -1,0 +1,19 @@
+-> uploading a new file
+1) add the new file in the directory
+2) git add <name of the new file> eg: git add abc.testing
+3) git commit -a -m "<message>" eg: git commit -a -m "adding a new file"
+4) git push origin
+
+-> uploading changes in an existing file
+1) change an existing file in the directory
+2) git commit -a -m "<message>" eg: git commit -a -m "adding a new file"
+3) git push origin
+
+-> downloading changes
+1) git pull origin master
+
+-> to check if you have any changes 
+1) git status
+2) git diff -> shows the modifications in existing files
+3) git checkout <fileName> -> reverts any changes in the file
+
