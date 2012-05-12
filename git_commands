@@ -17,3 +17,22 @@
 2) git diff -> shows the modifications in existing files
 3) git checkout <fileName> -> reverts any changes in the file
 
+
+-> HOW to setup an existing repo on a new machine
+1) get git on that machine 
+2) generate the SSH keys and put it on git hub
+   i) ssh-keygen -t rsa
+   ii) cat ~/.ssh/id_rsa.pub 
+   iii) copy the output of step ii to git-hub https://github.com/settings/ssh
+3) create a new folder where you want to setup your git-hub repo on your computer
+4) go to that directory and initialize git 
+   i) cd <path/to/dir>
+   ii) git init
+5) git pull <repo path> eg: git pull git@github.com:nitivachhani/trainingStuff.git
+6) git remote add origin <path to git repo> 
+   eg: git remote add origin git@github.com:nitivachhani/trainingStuff.git
+
+
+-> for setting up git on windows follow steps metioned on http://help.github.com/win-set-up-git/ and then follow up from steps 3 onwards mentioned above.
+
+
